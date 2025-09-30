@@ -1,14 +1,42 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
-    Animal[] animals = new Animal[25];
-    String name;
-    String city;
-    final int nbrCages = 25;   // instruction 14 : constant
-    int animalCount = 0;
+    private Animal[] animals = new Animal[25];
+    private String name;
+    private String city;
+    private final int nbrCages = 25; // instruction 14 : constant
+    private int animalCount = 0;
 
     public Zoo(String name, String city, int nbrCages) {
-        this.name = name;
+        setName(name);
         this.city = city;
-        // on ignore le paramètre nbrCages car un zoo a toujours 25 cages
+
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("Erreur : le nom du zoo ne doit pas être vide → valeur par défaut appliquée");
+            this.name = "ZooParDefaut";
+        } else {
+            this.name = name;
+        }
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getAnimalCount() {
+        return animalCount;
     }
 
     // Instruction 10 + 12
@@ -33,6 +61,7 @@ public class Zoo {
             System.out.println(" - " + animals[i]);
         }
     }
+
     public int searchAnimal(Animal a) {
         for (int i = 0; i < animalCount; i++) {
             if (animals[i].equals(a)) {

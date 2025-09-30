@@ -1,10 +1,10 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Animal {
-    private String family;
-    private String name;
-    private int age;
-    private boolean isMammal;
+    protected String family;
+    protected String name;
+    protected int age;
+    protected boolean isMammal;
 
     public Animal(String family, String name, int age, boolean isMammal) {
         this.family = family;
@@ -37,7 +37,7 @@ public class Animal {
     public void setAge(int age) {
         if (age < 0) {
             System.out.println("l'age ne doit pas etre négatif.");
-            this.age=0;
+            this.age = 0;
         }else{
             this.age= age;
         }
