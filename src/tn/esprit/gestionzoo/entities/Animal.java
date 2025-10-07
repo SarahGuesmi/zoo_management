@@ -13,6 +13,10 @@ public class Animal {
         this.isMammal = isMammal;
     }
 
+    public Animal() {
+
+    }
+
 
     public String getFamily() {
         return family;
