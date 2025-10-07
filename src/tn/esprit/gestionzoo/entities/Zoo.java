@@ -7,7 +7,7 @@ public class Zoo {
     private final int nbrCages = 25; // instruction 14 : constant
     private int animalCount = 0;
 
-    public Zoo(String name, String city, int nbrCages) {
+    public Zoo(String name, String city) {
         setName(name);
         this.city = city;
 
@@ -101,5 +101,8 @@ public class Zoo {
     @Override
     public String toString() {
         return "Zoo{name='" + name + "', city='" + city + "', cages=" + nbrCages + ", animaux=" + animalCount + "}";
+    }
+
+    public void displayZoo() {
     }
 }

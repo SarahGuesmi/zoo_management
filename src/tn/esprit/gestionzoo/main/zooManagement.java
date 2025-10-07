@@ -1,3 +1,8 @@
+package tn.esprit.gestionzoo.main;
+
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+
 public class zooManagement {
     public static void main(String[] args) {
         Zoo myZoo = new Zoo("MyZoo", "Tunis", 30);
@@ -30,6 +35,6 @@ public class zooManagement {
         // Instruction 16
         otherZoo.addAnimal(new Animal("tigre", "tigrou", 7, true));
         Zoo bigger = Zoo.comparerZoo(myZoo, otherZoo);
-        System.out.println("Le zoo avec le plus d’animaux est : " + bigger.name);
+        System.out.println("Le zoo avec le plus d’animaux est : " + bigger.getName());
     }
 }
