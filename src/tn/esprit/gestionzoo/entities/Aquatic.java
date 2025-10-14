@@ -4,7 +4,7 @@ package tn.esprit.gestionzoo.entities;
  * Famille aquatique : caractérisée par 'habitat'
  * (ex. "mer", "océan", "lac", "aquarium", etc.).
  */
-public class Aquatic extends Animal {
+public abstract class Aquatic extends Animal {
 
     private String habitat; // lieu de vie
 
@@ -33,10 +33,8 @@ public class Aquatic extends Animal {
         this.habitat = habitat.trim();
     }
 
-    /** Instruction 24 */
-    public void swim() {
-        System.out.println("This aquatic animal is swimming.");
-    }
+
+    public abstract void swim();
 
     @Override
     public String toString() {
@@ -47,4 +45,16 @@ public class Aquatic extends Animal {
                 ", habitat='" + habitat + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Aquatic other = (Aquatic) obj;
+        return getAge() == other.getAge()
+                && getName().equals(other.getName())
+                && getHabitat().equals(other.getHabitat());
+    }
+
 }
