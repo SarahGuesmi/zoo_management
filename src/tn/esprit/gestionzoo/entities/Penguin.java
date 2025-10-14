@@ -1,6 +1,5 @@
 package tn.esprit.gestionzoo.entities;
 
-
 public class Penguin extends Aquatic {
 
     private float swimmingDepth; // mètres
@@ -17,7 +16,9 @@ public class Penguin extends Aquatic {
         setSwimmingDepth(swimmingDepth);
     }
 
-    public float getSwimmingDepth() { return swimmingDepth; }
+    public float getSwimmingDepth() {
+        return swimmingDepth;
+    }
 
     public void setSwimmingDepth(float swimmingDepth) {
         if (swimmingDepth < 0f) {
@@ -26,7 +27,10 @@ public class Penguin extends Aquatic {
         this.swimmingDepth = swimmingDepth;
     }
 
-
+    @Override
+    public void swim() {
+        System.out.println("This penguin is swimming.");
+    }
 
     @Override
     public String toString() {

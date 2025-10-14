@@ -1,11 +1,11 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
-    private Animal[] animals = new Animal[25];
-    private String name;
-    private String city;
-    private final int nbrCages = 25; // instruction 14 : constant
-    private int animalCount = 0;
+    protected Animal[] animals = new Animal[25];
+    protected String name;
+    protected String city;
+    protected final int nbrCages = 25;
+    protected int animalCount = 0;
 
     public Zoo(String name, String city) {
         setName(name);
@@ -13,18 +13,18 @@ public class Zoo {
 
     }
 
-
     public String getName() {
-        return name;
+       return name;
     }
 
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            System.out.println("Erreur : le nom du zoo ne doit pas être vide → valeur par défaut appliquée");
-            this.name = "ZooParDefaut";
-        } else {
-            this.name = name;
+        if (name == null) {
+            System.out.println("Le nom du Zoo ne doit pas etre vide");
+            this.name = "Zoo";
+        }else{
+            this.name=name;
         }
+
     }
 
     public String getCity() {
