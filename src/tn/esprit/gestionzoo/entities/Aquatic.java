@@ -1,17 +1,14 @@
 package tn.esprit.gestionzoo.entities;
 
-/**
- * Famille aquatique : caractérisée par 'habitat'
- * (ex. "mer", "océan", "lac", "aquarium", etc.).
- */
-public abstract class Aquatic extends Animal {
+import tn.esprit.gestionzoo.enums.Food;
+import tn.esprit.gestionzoo.interfaces.Carnivore;
 
-    private String habitat; // lieu de vie
+public abstract class Aquatic extends Animal implements Carnivore<Food> {
+
+    private String habitat;
 
     public Aquatic() {
         super();
-        // Constructeur par défaut pour Instruction 21
-        // Valeurs par défaut raisonnables
         setFamily("Aquatic");
         setName("Unknown Aquatic");
         setAge(0);
@@ -24,7 +21,9 @@ public abstract class Aquatic extends Animal {
         setHabitat(habitat);
     }
 
-    public String getHabitat() { return habitat; }
+    public String getHabitat() {
+        return habitat;
+    }
 
     public void setHabitat(String habitat) {
         if (habitat == null || habitat.trim().isEmpty()) {
@@ -33,6 +32,15 @@ public abstract class Aquatic extends Animal {
         this.habitat = habitat.trim();
     }
 
+    // Méthode de l'interface Carnivore
+    @Override
+    public void eatMeat(Food meat) {
+        if (meat == Food.MEAT || meat == Food.BOTH) {
+            System.out.println(getName() + " is eating meat!");
+        } else {
+            System.out.println(getName() + " cannot eat this food.");
+        }
+    }
 
     public abstract void swim();
 
@@ -45,16 +53,4 @@ public abstract class Aquatic extends Animal {
                 ", habitat='" + habitat + '\'' +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Aquatic other = (Aquatic) obj;
-        return getAge() == other.getAge()
-                && getName().equals(other.getName())
-                && getHabitat().equals(other.getHabitat());
-    }
-
 }

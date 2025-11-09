@@ -1,12 +1,8 @@
 package tn.esprit.gestionzoo.main;
 
 import java.util.Scanner;
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
-import tn.esprit.gestionzoo.entities.Aquatic;
-import tn.esprit.gestionzoo.entities.Dolphin;
-import tn.esprit.gestionzoo.entities.Penguin;
-import tn.esprit.gestionzoo.entities.Terrestrial;
+import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.enums.Food;
 
 public class zooManagement {
     public static void main(String[] args) {
@@ -15,7 +11,6 @@ public class zooManagement {
         Scanner input = new Scanner(System.in);
         System.out.print("Insérer le nom du zoo : ");
         String zooName = input.nextLine();
-
         System.out.print("Insérer la ville : ");
         String city = input.nextLine();
 
@@ -68,9 +63,25 @@ public class zooManagement {
 
         // Test de la méthode swim()
         System.out.println("\n=== Test de swim() ===");
-        aq.swim();   // générique (Aquatic)
-        d1.swim();   // redéfini (Dolphin)
-        p1.swim();   // redéfini (Penguin)
+        aq.swim();
+        d1.swim();
+        p1.swim();
+
+        // ==========================
+        // Prosit 8 – Tests alimentation
+        // ==========================
+        System.out.println("\n=== Test alimentation Prosit 8 ===");
+
+        // Aquatic
+        aq.eatMeat(Food.MEAT);      // viande
+        aq.eatMeat(Food.PLANT);     // plante (devrait refuser)
+        // Penguin
+        p1.eatMeat(Food.MEAT);      // viande
+        p1.eatMeat(Food.PLANT);     // plante (refus)
+        // Terrestrial
+        te.eatMeat(Food.MEAT);
+        te.eatPlant(Food.PLANT);
+        te.eatPlantAndMeat(Food.BOTH);
 
         // Ajout au zoo
         System.out.println("\n=== Ajout des nouveaux animaux dans le zoo ===");
@@ -78,16 +89,12 @@ public class zooManagement {
         myZoo.addAnimal(te);
         myZoo.addAnimal(d1);
         myZoo.addAnimal(p1);
-
         myZoo.displayAnimals();
 
         // ==========================
-        // Prosit 6 – Instructions 25 à 31
+        // Prosit 6 – Gestion des animaux aquatiques
         // ==========================
         System.out.println("\n===== Prosit 6 : Gestion des animaux aquatiques =====");
-
-        // Ajout des animaux aquatiques dans le tableau spécial
-        System.out.println("\n=== Ajout des animaux aquatiques dans le tableau ===");
         myZoo.addAquaticAnimal(aq);
         myZoo.addAquaticAnimal(d1);
         myZoo.addAquaticAnimal(p1);
