@@ -1,6 +1,5 @@
 package tn.esprit.gestionzoo.entities;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -40,17 +39,29 @@ public class SocieteArrayList implements IGestion<Employe> {
         }
     }
 
-    // 🔹 Tri par ID (Comparable)
+    // 🔹 Tri par ID (utilise Comparable défini dans Employe)
     @Override
     public void trierEmployeParId() {
-        Collections.sort(employes, Comparator.comparingInt(Employe::getId));
+        Collections.sort(employes);
     }
 
-    // 🔹 Tri par NomDépartement PUIS Grade (Comparator)
+    // 🔹 Tri par Département PUIS Grade (utilise 2 comparateurs)
     @Override
     public void trierEmployeParNomDepartementEtGrade() {
-        employes.sort(Comparator
-                .comparing(Employe::getNomDepartement)
-                .thenComparing(Employe::getGrade));
+        Comparator<Employe> NameCriteria = new Comparator<Employe>() {
+            @Override
+            public int compare(Employe o1, Employe o2) {
+                return o1.getNomDepartement().compareToIgnoreCase(o2.getNomDepartement());
+            }
+        };
+
+        Comparator<Employe> GradeCriteria = new Comparator<Employe>() {
+            @Override
+            public int compare(Employe o1, Employe o2) {
+                return o1.getGrade() - o2.getGrade();
+            }
+        };
+
+        employes.sort(NameCriteria.thenComparing(GradeCriteria));
     }
 }
