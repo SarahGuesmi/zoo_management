@@ -4,12 +4,15 @@ import tn.esprit.gestionzoo.entities.Department;
 import tn.esprit.gestionzoo.entities.DepartmentHashSet;
 import tn.esprit.gestionzoo.entities.Employe;
 import tn.esprit.gestionzoo.entities.SocieteArrayList;
+import tn.esprit.gestionzoo.entities.AffectationHashMap;
 
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
 
+        //GESTION DES EMPLOYÉS (ArrayList)
         SocieteArrayList societe = new SocieteArrayList();
 
         Employe e1 = new Employe(1, "Guesmi", "Sarah", "RH", 3);
@@ -45,7 +48,7 @@ public class Main {
         societe.supprimerEmploye(e2);
         societe.afficherEmploye();
 
-        //Gestion des départements
+        //GESTION DES DÉPARTEMENTS (HashSet)
 
         System.out.println("\n Gestion des Départements");
         DepartmentHashSet gestionDepartement = new DepartmentHashSet();
@@ -78,6 +81,59 @@ public class Main {
         System.out.println("\nSuppression de d3...");
         gestionDepartement.supprimerDepartement(d3);
         gestionDepartement.displayDepartement();
+        // PROSIT 11 : MAP
+
+        System.out.println("\n=== Prosit 11 : MAP ===");
+
+        AffectationHashMap affect = new AffectationHashMap();
+
+        // Affectation employé → département
+        affect.ajouterEmployeDepartement(e1, d1);
+        affect.ajouterEmployeDepartement(e2, d2);
+        affect.ajouterEmployeDepartement(e3, d3);
+        affect.ajouterEmployeDepartement(e4, d4);
+
+        System.out.println("\n--- Affectations initiales ---");
+        affect.afficherEmployesEtDepartements();
+
+        // Ajouter le même employé dans un autre département
+        System.out.println("\n--- Ajout du même employé e1 dans un autre département (d2) ---");
+        affect.ajouterEmployeDepartement(e1, d2);
+
+        System.out.println("\n--- Après réaffectation ---");
+        affect.afficherEmployesEtDepartements();
+        // Remarque : e1 n'a qu'une seule affectation → remplacée automatiquement
+
+        // Suppression employé
+        System.out.println("\nSuppression de e3...");
+        affect.supprimerEmploye(e3);
+        affect.afficherEmployesEtDepartements();
+
+        // Suppression employé + département précis
+        System.out.println("\nSuppression de e2 dans le département Finance...");
+        affect.supprimerEmployeEtDepartement(e2, d2);
+        affect.afficherEmployesEtDepartements();
+
+        // Afficher employés seuls
+        System.out.println("\nListe des employés : ");
+        affect.afficherEmployes();
+
+        // Afficher départements seuls
+        System.out.println("\nListe des départements : ");
+        affect.afficherDepartements();
+
+        // Rechercher employé
+        System.out.println("\nRecherche employé e1 : " + affect.rechercherEmploye(e1));
+
+        // Rechercher département
+        System.out.println("Recherche département IT : " + affect.rechercherDepartement(d1));
+
+        // Tri de la map
+        System.out.println("\n--- Map triée par ID des employés ---");
+        TreeMap<Employe, Department> triee = affect.trierMap();
+
+        for (Employe e : triee.keySet())
+            System.out.println(e + " --> " + triee.get(e));
 
         System.out.println("\n Exécution terminée avec succès !");
     }
